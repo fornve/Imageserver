@@ -9,7 +9,7 @@ class UploadController extends Controller
 		self::Redirect( '/Error/NotFound' );
 	}
 
-	function File()
+	function Upload()
 	{
 		if( $_SERVER[ 'REQUEST_METHOD' ] == 'POST' )
 		{
@@ -40,6 +40,37 @@ class UploadController extends Controller
 			}
 		}
 	}
+
+	function Delete()
+	{
+        if( $_SERVER[ 'REQUEST_METHOD' ] == 'POST' )
+        {   
+            $input = Common::Inputs( array( 'token', 'dir', 'filename', 'service' ), INPUT_POST );
+            if( self::ValidateToken( $input->token ) )
+            {   
+                if( strlen( $input->dir ) < 1 )
+                    $input->dir = '/';
+
+                $dir = PROJECT_PATH .'/resources/'. $input->service .'/' . $input->dir;
+                if( !file_exists( $dir ) )
+                    mkdir( $dir, 0700, true );
+
+                $file = $dir . $input->filename;
+
+				if( !file_exists( $file ) )
+					return null;
+
+                if( unlink( $file ) )
+                {   
+                    $image = Image::RetrieveByFile( $file );
+                    if( $image )
+						$image->Delete();
+
+                    return true;
+                }
+            }
+        }
+	} 
 
 	protected static function ValidateToken( $token )
 	{
