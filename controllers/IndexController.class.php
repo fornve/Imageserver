@@ -4,6 +4,9 @@ class IndexController extends Controller
 {
 	function Index()
 	{
+		$entity = new Entity();
+		$collection = $entity->Collection( "SELECT * FROM image" );
+		var_dump( $entity );
 		echo "ImageServer. Nothing to see here.";
 	}
 

@@ -3,9 +3,11 @@
     RewriteRule ^Index/(.*)$		index.php [L]
     RewriteRule ^Upload/(.*)$		index.php [L]
     RewriteRule ^Error/(.*)$		index.php [L]
-    RewriteRule .* 					resources/$1
+    RewriteRule ^emarket/(.*)$ 		resources/emarket/$1 [L]
+    RewriteRule ^filibrary/(.*)$ 	resources/filibrary/$1 [L]
+    RewriteRule ^photos/(.*)$ 		resources/photos/$1 [L]
 
     RewriteCond     %{REQUEST_FILENAME}		/resources/*
     RewriteCond     %{REQUEST_FILENAME}		!-f
-    RewriteRule     ^/resources/(.*)$		/index.php [L]
+    RewriteRule     .*						/index.php
 </IfModule>
