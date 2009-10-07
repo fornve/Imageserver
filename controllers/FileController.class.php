@@ -1,6 +1,6 @@
 <?php
 
-class UploadController extends Controller
+class FileController extends Controller
 {
 	protected static $token = '0a1e90c83d89fd1bf0be8b82a9ff1575';
 

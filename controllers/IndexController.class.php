@@ -4,17 +4,20 @@ class IndexController extends Controller
 {
 	function Index()
 	{
-		$entity = new Entity();
-		$collection = $entity->Collection( "SELECT * FROM image" );
-		var_dump( $entity );
 		echo "ImageServer. Nothing to see here.";
 	}
 
 	function Images()
 	{
+		echo '<pre>';	
 		$images = Image::GetAll( 'Image' );
-		$this->Assign( 'images', $images );
-		echo $this->Decorate( 'images.tpl' );
+		$i = 1;
+
+		echo "Images: ". count( $images ) . "\n\n";
+		if( $images ) foreach( $images as $image )
+		{
+			echo $i++ ." - ". basename( $image->file ) ."\n";	
+		}
 	}
 
 }
