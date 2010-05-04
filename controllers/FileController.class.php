@@ -2,7 +2,7 @@
 
 class FileController extends Controller
 {
-	protected static $token = '0a1e90c83d89fd1bf0be8b82a9ff1575';
+	protected static $token = 'changeme';
 
 	function Index()
 	{
