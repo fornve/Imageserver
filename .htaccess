@@ -1,7 +1,7 @@
 <IfModule mod_rewrite.c>
     RewriteEngine on
     RewriteRule ^Index/(.*)$		index.php [L]
-    RewriteRule ^File/(.*)$		index.php [L]
+    RewriteRule ^File/(.*)$			index.php [L]
     RewriteRule ^Error/(.*)$		index.php [L]
     RewriteRule ^emarket/(.*)$ 		resources/emarket/$1 [L]
     RewriteRule ^filibrary/(.*)$ 	resources/filibrary/$1 [L]
@@ -11,3 +11,9 @@
     RewriteCond     %{REQUEST_FILENAME}		!-f
     RewriteRule     .*						/index.php
 </IfModule>
+
+#<Directory "resources/*">
+	#ExpiresActive On
+	#ExpiresDefault "access plus 2 months"
+	#Header add Cache-Control public
+#</Directory>
